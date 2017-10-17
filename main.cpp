@@ -5,7 +5,7 @@
 #include "bitmap.h"
 using namespace std;
 
-const float lumRed = .2126;
+const float lumRed = .2126;       // numbers for algorithms
 const float lumGreen = .7152;
 const float lumBlue = .0722;
 const int randomVariance = 50;
@@ -24,7 +24,7 @@ int main() {
   cin>>im;
   image.open(im);
     do {
-      cout<<"please enter a VALID file name"<<endl;
+      cout<<"please enter a VALID file name"<<endl;  //validate image
       cin>>im;
       image.open(im);
     } while(image.isImage() == false);
@@ -32,7 +32,7 @@ int main() {
 
   bmp= image.toPixelMatrix();
   cout<<"it is "<<bmp.size()<<" pixels tall"<<endl;
-  cout<<"and "<<bmp[0].size()<<" pixels wide"<<endl;
+  cout<<"and "<<bmp[0].size()<<" pixels wide"<<endl; // send into the Matrix
 
   int r;
   int g;
@@ -46,7 +46,7 @@ int main() {
     cout<<"Do you want to add film grain?"<<endl;
     cout<<"(Y)es or (N)o"<<endl;
     cin>>film;
-    srand ( time(NULL) );
+    srand ( time(NULL) );  // seed random numbers
 
     cout<<"What algorithm would you like to use?"<<endl;
     cout<<"(A)veraging, (S)ingle Channel, (L)uma, (T)errible"<<endl;
@@ -67,7 +67,7 @@ int main() {
 
 
 
-                  if (style == 'A') {
+                  if (style == 'A') {    // different greyscale algorithms
                     grey = (r+g+u)/3;
                   }
                   if (style == 'S') {
@@ -94,7 +94,7 @@ int main() {
                     }
                   }
 
-                    if (film == 'Y' || film =='y') {
+                    if (film == 'Y' || film =='y') {  // film grain
 
                       randomNumber = rand() % randomVariance ;
                         grey = grey-randomNumber;
@@ -102,7 +102,7 @@ int main() {
 
                       }
 
-              if (grey > 255) {
+              if (grey > 255) {  //ensure that the pixels are valid numerically
                 grey = 255;
               }
               if (grey < 0) {
